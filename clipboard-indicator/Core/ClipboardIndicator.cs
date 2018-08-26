@@ -88,7 +88,7 @@ namespace clipboard_indicator.Core
                     }
                 }
             }
-            
+
             SaveConfiguration();
 
             History = new List<string>(HistorySize);
@@ -106,7 +106,7 @@ namespace clipboard_indicator.Core
                         History.Add(line);
                     }
                 }
-                
+
                 SaveHistory();
             }
 
