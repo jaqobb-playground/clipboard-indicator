@@ -58,9 +58,15 @@ namespace clipboard_indicator.Core
                         continue;
                     }
 
-                    if (HistorySize < 10 || HistorySize > 150)
+                    if (HistorySize < 10)
                     {
-                        HistorySize = 50;
+                        HistorySize = 10;
+                        continue;
+                    }
+
+                    if (HistorySize > 150)
+                    {
+                        HistorySize = 150;
                         continue;
                     }
                 }
@@ -78,13 +84,18 @@ namespace clipboard_indicator.Core
                 {
                     if (!int.TryParse(data[1], out NotifyDuration))
                     {
-                        NotifyDuration = 1000;
+                        NotifyDuration = 250;
                         continue;
                     }
 
-                    if (NotifyDuration < 100 || NotifyDuration > 10000)
+                    if (NotifyDuration < 100)
                     {
-                        NotifyDuration = 1000;
+                        NotifyDuration = 100;
+                    }
+
+                    if (NotifyDuration > 10000)
+                    {
+                        NotifyDuration = 10000;
                     }
                 }
             }
