@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using clipboard_indicator.Core.Ui;
 
 namespace clipboard_indicator.Core
 {
     public class ClipboardIndicator
     {
-        private static readonly string ApplicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Clipboard Indicator");
-        private static readonly string ConfigurationFile = Path.Combine(ApplicationFolder, "configuration.properties");
-        private static readonly string HistoryFile = Path.Combine(ApplicationFolder, "history.log");
+        public static readonly string ApplicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Clipboard Indicator");
+        public static readonly string ConfigurationFile = Path.Combine(ApplicationFolder, "configuration.properties");
+        public static readonly string HistoryFile = Path.Combine(ApplicationFolder, "history.log");
+        public static readonly string IconFile = Path.Combine(ApplicationFolder, "icon.ico");
 
         public bool IsRunning;
         public int HistorySize;

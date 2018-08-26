@@ -39,7 +39,7 @@ namespace clipboard_indicator.Core.Ui
         public void StartNotifyIcon()
         {
             _notifyIcon = new NotifyIcon();
-            _notifyIcon.Icon = new Icon("icon.ico");
+            _notifyIcon.Icon = new Icon(ClipboardIndicator.IconFile);
 
             ContextMenu notifyIconContextMenu = new ContextMenu();
             notifyIconContextMenu.MenuItems.Add("History", LaunchHistory);
@@ -85,7 +85,7 @@ namespace clipboard_indicator.Core.Ui
         {
             ClipboardIndicatorHistoryForm historyForm = new ClipboardIndicatorHistoryForm(_clipboardIndicator, this);
             historyForm.Name = "Clipboard Indicator";
-            historyForm.Icon = new Icon("icon.ico");
+            historyForm.Icon = new Icon(ClipboardIndicator.IconFile);
             historyForm.Text = "Clipboard Indicator";
             historyForm.Size = new Size(300, 225);
             historyForm.MinimizeBox = false;
@@ -99,7 +99,7 @@ namespace clipboard_indicator.Core.Ui
         {
             ClipboardIndicatorSettingsForm settingsForm = new ClipboardIndicatorSettingsForm(_clipboardIndicator);
             settingsForm.Name = "Clipboard Indicator";
-            settingsForm.Icon = new Icon("icon.ico");
+            settingsForm.Icon = new Icon(ClipboardIndicator.IconFile);
             settingsForm.Text = "Clipboard Indicator";
             settingsForm.Size = new Size(200, 125);
             settingsForm.MinimizeBox = false;
