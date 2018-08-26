@@ -26,16 +26,14 @@ namespace clipboard_indicator.Core.Ui
             if (arguments.CloseReason == CloseReason.UserClosing)
             {
                 arguments.Cancel = true;
-
-                Hide();
             }
             else
             {
                 _clipboardIndicator.IsRunning = false;
                 _notifyIcon.Visible = false;
-
-                Hide();
             }
+            
+            Hide();
         }
 
         public void StartNotifyIcon()

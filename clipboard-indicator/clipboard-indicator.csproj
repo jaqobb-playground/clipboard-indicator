@@ -85,10 +85,5 @@
     <Page Include="Core\Ui\ClipboardIndicatorHistoryForm.xaml" />
     <Page Include="Core\Ui\ClipboardIndicatorSettingsForm.xaml" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include=".gitignore" />
-    <Content Include="license.txt" />
-    <Content Include="readme.md" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
