@@ -55,14 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ClipboardIndicator.cs" />
-    <Compile Include="Core\Ui\ClipboardIndicatorForm.xaml.cs">
+    <Compile Include="Core\Ui\MainForm.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Ui\ClipboardIndicatorHistoryForm.xaml.cs">
-      <DependentUpon>ClipboardIndicatorHistoryForm.xaml</DependentUpon>
+    <Compile Include="Core\Ui\HistoryForm.xaml.cs">
+      <DependentUpon>HistoryForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Core\Ui\ClipboardIndicatorSettingsForm.xaml.cs">
-      <DependentUpon>ClipboardIndicatorSettingsForm.xaml</DependentUpon>
+    <Compile Include="Core\Ui\SettingsForm.xaml.cs">
+      <DependentUpon>SettingsForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -78,12 +78,12 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Core\Ui\ClipboardIndicatorForm.xaml">
+    <Page Include="Core\Ui\MainForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Core\Ui\ClipboardIndicatorHistoryForm.xaml" />
-    <Page Include="Core\Ui\ClipboardIndicatorSettingsForm.xaml" />
+    <Page Include="Core\Ui\HistoryForm.xaml" />
+    <Page Include="Core\Ui\SettingsForm.xaml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

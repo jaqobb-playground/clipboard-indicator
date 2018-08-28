@@ -4,31 +4,26 @@ using Clipboard = System.Windows.Clipboard;
 
 namespace clipboard_indicator.Core.Ui
 {
-    public partial class ClipboardIndicatorHistoryForm
+    public partial class HistoryForm
     {
         private readonly ClipboardIndicator _clipboardIndicator;
-        private readonly ClipboardIndicatorForm _clipboardIndicatorForm;
+        private readonly MainForm _mainForm;
         private readonly ListBox _historyBox;
 
-        public ClipboardIndicatorHistoryForm(ClipboardIndicator clipboardIndicator, ClipboardIndicatorForm clipboardIndicatorForm)
+        public HistoryForm(ClipboardIndicator clipboardIndicator, MainForm mainForm)
         {
             _clipboardIndicator = clipboardIndicator;
-            _clipboardIndicatorForm = clipboardIndicatorForm;
-
+            _mainForm = mainForm;
             _historyBox = new ListBox();
             _historyBox.Text = "Notify on clipboard save";
             _historyBox.Location = new Point(0, 0);
             _historyBox.Size = new Size(285, 190);
-
             foreach (string line in _clipboardIndicator.History)
             {
                 _historyBox.Items.Add(line);
             }
-
             _historyBox.MouseDoubleClick += HandleHistory;
-
             Controls.Add(_historyBox);
-
             InitializeComponent();
         }
 
@@ -38,17 +33,12 @@ namespace clipboard_indicator.Core.Ui
             {
                 return;
             }
-
             int index = _historyBox.IndexFromPoint(arguments.Location);
-
             if (index != ListBox.NoMatches)
             {
                 string line = _clipboardIndicator.History[index];
-
-                _clipboardIndicatorForm.LastClipboardText = line;
-                
+                _mainForm.LastClipboardText = line;
                 Clipboard.SetText(line);
-                
                 Hide();
             }
         }

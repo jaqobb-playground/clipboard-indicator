@@ -25,7 +25,6 @@ namespace clipboard_indicator.Core
             {
                 Directory.CreateDirectory(ApplicationFolder);
             }
-
             if (!File.Exists(ConfigurationFile))
             {
                 File.AppendAllText(ConfigurationFile, "history-size=50");
@@ -35,21 +34,17 @@ namespace clipboard_indicator.Core
                 File.AppendAllText(ConfigurationFile, Environment.NewLine);
                 File.AppendAllText(ConfigurationFile, "notify-duration=250");
             }
-
             foreach (string line in File.ReadAllLines(ConfigurationFile))
             {
                 if (line.Length == 0)
                 {
                     continue;
                 }
-
                 string[] data = line.Split('=');
-
                 if (data.Length != 2)
                 {
                     continue;
                 }
-
                 if (data[0].Equals("history-size"))
                 {
                     if (!int.TryParse(data[1], out HistorySize))
@@ -57,20 +52,17 @@ namespace clipboard_indicator.Core
                         HistorySize = 50;
                         continue;
                     }
-
                     if (HistorySize < 10)
                     {
                         HistorySize = 10;
                         continue;
                     }
-
                     if (HistorySize > 150)
                     {
                         HistorySize = 150;
                         continue;
                     }
                 }
-
                 if (data[0].Equals("notify"))
                 {
                     if (!bool.TryParse(data[1], out Notify))
@@ -79,7 +71,6 @@ namespace clipboard_indicator.Core
                         continue;
                     }
                 }
-
                 if (data[0].Equals("notify-duration"))
                 {
                     if (!int.TryParse(data[1], out NotifyDuration))
@@ -87,23 +78,18 @@ namespace clipboard_indicator.Core
                         NotifyDuration = 250;
                         continue;
                     }
-
                     if (NotifyDuration < 100)
                     {
                         NotifyDuration = 100;
                     }
-
                     if (NotifyDuration > 10000)
                     {
                         NotifyDuration = 10000;
                     }
                 }
             }
-
             SaveConfiguration();
-
             History = new List<string>(HistorySize);
-
             if (!File.Exists(HistoryFile))
             {
                 File.Create(HistoryFile).Close();
@@ -120,13 +106,10 @@ namespace clipboard_indicator.Core
 
                 SaveHistory();
             }
-
             IsRunning = true;
-
-            ClipboardIndicatorForm form = new ClipboardIndicatorForm(this);
+            MainForm form = new MainForm(this);
             form.Name = "Clipboard Indicator";
             form.Size = new Size(0, 0);
-
             form.StartNotifyIcon();
             form.ListenForCopy();
         }
@@ -134,7 +117,6 @@ namespace clipboard_indicator.Core
         public void AddToHistory(string line)
         {
             History.Insert(0, line);
-
             if (History.Count > HistorySize)
             {
                 History.RemoveAt(HistorySize - 1);
@@ -144,7 +126,6 @@ namespace clipboard_indicator.Core
         public void SaveConfiguration()
         {
             File.Delete(ConfigurationFile);
-
             File.AppendAllText(ConfigurationFile, "history-size=" + HistorySize);
             File.AppendAllText(ConfigurationFile, Environment.NewLine);
             File.AppendAllText(ConfigurationFile, Environment.NewLine);
@@ -156,11 +137,9 @@ namespace clipboard_indicator.Core
         public void SaveHistory()
         {
             File.Delete(HistoryFile);
-
             for (int index = 0; index < History.Count; index++)
             {
                 File.AppendAllText(HistoryFile, History[index]);
-
                 if (index != History.Count - 1)
                 {
                     File.AppendAllText(HistoryFile, Environment.NewLine);

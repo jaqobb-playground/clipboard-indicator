@@ -6,23 +6,21 @@ using System.Windows.Forms;
 
 namespace clipboard_indicator.Core.Ui
 {
-    public partial class ClipboardIndicatorForm
+    public partial class MainForm
     {
         private readonly ClipboardIndicator _clipboardIndicator;
         private NotifyIcon _notifyIcon;
         public string LastClipboardText = "";
 
-        public ClipboardIndicatorForm(ClipboardIndicator clipboardIndicator)
+        public MainForm(ClipboardIndicator clipboardIndicator)
         {
             _clipboardIndicator = clipboardIndicator;
-
             InitializeComponent();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs arguments)
         {
             base.OnFormClosing(arguments);
-
             if (arguments.CloseReason == CloseReason.UserClosing)
             {
                 arguments.Cancel = true;
@@ -32,7 +30,6 @@ namespace clipboard_indicator.Core.Ui
                 _clipboardIndicator.IsRunning = false;
                 _notifyIcon.Visible = false;
             }
-            
             Hide();
         }
 
@@ -40,12 +37,10 @@ namespace clipboard_indicator.Core.Ui
         {
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon = new Icon(ClipboardIndicator.IconFile);
-
             ContextMenu notifyIconContextMenu = new ContextMenu();
             notifyIconContextMenu.MenuItems.Add("History", LaunchHistory);
             notifyIconContextMenu.MenuItems.Add("Settings", LaunchSettings);
             notifyIconContextMenu.MenuItems.Add("Exit", LaunchExit);
-
             _notifyIcon.ContextMenu = notifyIconContextMenu;
             _notifyIcon.Visible = true;
         }
@@ -55,20 +50,15 @@ namespace clipboard_indicator.Core.Ui
             Thread thread = new Thread(() =>
             {
                 LastClipboardText = Clipboard.GetText();
-
                 while (_clipboardIndicator.IsRunning)
                 {
                     Thread.Sleep(50);
-
                     string clipboardText = Clipboard.GetText();
-
                     if (clipboardText.Length != 0 && !clipboardText.Equals(LastClipboardText))
                     {
                         LastClipboardText = clipboardText;
-
                         _clipboardIndicator.AddToHistory(LastClipboardText);
                         _clipboardIndicator.SaveHistory();
-
                         if (_clipboardIndicator.Notify)
                         {
                             _notifyIcon.ShowBalloonTip(_clipboardIndicator.NotifyDuration, "Clipboard Indicator", "Clipboard saved.", ToolTipIcon.Info);
@@ -83,7 +73,7 @@ namespace clipboard_indicator.Core.Ui
 
         private void LaunchHistory(object sender, EventArgs arguments)
         {
-            ClipboardIndicatorHistoryForm historyForm = new ClipboardIndicatorHistoryForm(_clipboardIndicator, this);
+            HistoryForm historyForm = new HistoryForm(_clipboardIndicator, this);
             historyForm.Name = "Clipboard Indicator";
             historyForm.Icon = new Icon(ClipboardIndicator.IconFile);
             historyForm.Text = "Clipboard Indicator";
@@ -91,13 +81,12 @@ namespace clipboard_indicator.Core.Ui
             historyForm.MinimizeBox = false;
             historyForm.MaximizeBox = false;
             historyForm.StartPosition = FormStartPosition.CenterScreen;
-            
             historyForm.Show();
         }
 
         private void LaunchSettings(object sender, EventArgs arguments)
         {
-            ClipboardIndicatorSettingsForm settingsForm = new ClipboardIndicatorSettingsForm(_clipboardIndicator);
+            SettingsForm settingsForm = new SettingsForm(_clipboardIndicator);
             settingsForm.Name = "Clipboard Indicator";
             settingsForm.Icon = new Icon(ClipboardIndicator.IconFile);
             settingsForm.Text = "Clipboard Indicator";
@@ -106,7 +95,6 @@ namespace clipboard_indicator.Core.Ui
             settingsForm.MaximizeBox = false;
             settingsForm.FormBorderStyle = FormBorderStyle.FixedSingle;
             settingsForm.StartPosition = FormStartPosition.CenterScreen;
-
             settingsForm.Show();
         }
 
@@ -114,9 +102,7 @@ namespace clipboard_indicator.Core.Ui
         {
             _clipboardIndicator.IsRunning = false;
             _notifyIcon.Visible = false;
-
             Hide();
-
             Process.GetCurrentProcess().Kill();
         }
     }
