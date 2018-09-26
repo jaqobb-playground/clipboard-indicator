@@ -2,24 +2,20 @@ using System.Drawing;
 using System.Windows.Forms;
 using Clipboard = System.Windows.Clipboard;
 
-namespace clipboard_indicator.Core.Ui
-{
-    public partial class HistoryForm
-    {
+namespace clipboard_indicator.Core.Ui {
+    public partial class HistoryForm {
         private readonly ClipboardIndicator _clipboardIndicator;
         private readonly MainForm _mainForm;
         private readonly ListBox _historyBox;
 
-        public HistoryForm(ClipboardIndicator clipboardIndicator, MainForm mainForm)
-        {
+        public HistoryForm(ClipboardIndicator clipboardIndicator, MainForm mainForm) {
             _clipboardIndicator = clipboardIndicator;
             _mainForm = mainForm;
             _historyBox = new ListBox();
             _historyBox.Text = "Notify on clipboard save";
             _historyBox.Location = new Point(0, 0);
             _historyBox.Size = new Size(285, 190);
-            foreach (string line in _clipboardIndicator.History)
-            {
+            foreach (string line in _clipboardIndicator.History) {
                 _historyBox.Items.Add(line);
             }
             _historyBox.MouseDoubleClick += HandleHistory;
@@ -27,15 +23,12 @@ namespace clipboard_indicator.Core.Ui
             InitializeComponent();
         }
 
-        private void HandleHistory(object sender, MouseEventArgs arguments)
-        {
-            if (arguments.Button != MouseButtons.Left)
-            {
+        private void HandleHistory(object sender, MouseEventArgs arguments) {
+            if (arguments.Button != MouseButtons.Left) {
                 return;
             }
             int index = _historyBox.IndexFromPoint(arguments.Location);
-            if (index != ListBox.NoMatches)
-            {
+            if (index != ListBox.NoMatches) {
                 string line = _clipboardIndicator.History[index];
                 _mainForm.LastClipboardText = line;
                 Clipboard.SetText(line);

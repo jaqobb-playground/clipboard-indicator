@@ -2,17 +2,14 @@ using System;
 using System.Windows.Forms;
 using System.Drawing;
 
-namespace clipboard_indicator.Core.Ui
-{
-    public partial class SettingsForm
-    {
+namespace clipboard_indicator.Core.Ui {
+    public partial class SettingsForm {
         private readonly ClipboardIndicator _clipboardIndicator;
         private readonly NumericUpDown _historySizeBox;
         private readonly CheckBox _notifyBox;
         private readonly NumericUpDown _notifyDurationBox;
 
-        public SettingsForm(ClipboardIndicator clipboardIndicator)
-        {
+        public SettingsForm(ClipboardIndicator clipboardIndicator) {
             _clipboardIndicator = clipboardIndicator;
             _historySizeBox = new NumericUpDown();
             _historySizeBox.Minimum = 10;
@@ -51,16 +48,13 @@ namespace clipboard_indicator.Core.Ui
             InitializeComponent();
         }
 
-        private void HandleHistorySize(object sender, EventArgs arguments)
-        {
+        private void HandleHistorySize(object sender, EventArgs arguments) {
             _clipboardIndicator.HistorySize = (int) _historySizeBox.Value;
             _clipboardIndicator.SaveConfiguration();
         }
 
-        private void HandleNotify(object sender, MouseEventArgs arguments)
-        {
-            if (arguments.Button == MouseButtons.Left)
-            {
+        private void HandleNotify(object sender, MouseEventArgs arguments) {
+            if (arguments.Button == MouseButtons.Left) {
                 _clipboardIndicator.Notify = !_clipboardIndicator.Notify;
                 _clipboardIndicator.SaveConfiguration();
                 _notifyBox.Checked = _clipboardIndicator.Notify;
@@ -68,8 +62,7 @@ namespace clipboard_indicator.Core.Ui
             }
         }
 
-        private void HandleNotifyDuration(object sender, EventArgs arguments)
-        {
+        private void HandleNotifyDuration(object sender, EventArgs arguments) {
             _clipboardIndicator.NotifyDuration = (int) _notifyDurationBox.Value;
             _clipboardIndicator.SaveConfiguration();
         }

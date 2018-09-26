@@ -4,37 +4,30 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace clipboard_indicator.Core.Ui
-{
-    public partial class MainForm
-    {
+namespace clipboard_indicator.Core.Ui {
+    public partial class MainForm {
         private readonly ClipboardIndicator _clipboardIndicator;
         private NotifyIcon _notifyIcon;
         public string LastClipboardText = "";
 
-        public MainForm(ClipboardIndicator clipboardIndicator)
-        {
+        public MainForm(ClipboardIndicator clipboardIndicator) {
             _clipboardIndicator = clipboardIndicator;
             InitializeComponent();
         }
 
-        protected override void OnFormClosing(FormClosingEventArgs arguments)
-        {
+        protected override void OnFormClosing(FormClosingEventArgs arguments) {
             base.OnFormClosing(arguments);
-            if (arguments.CloseReason == CloseReason.UserClosing)
-            {
+            if (arguments.CloseReason == CloseReason.UserClosing) {
                 arguments.Cancel = true;
             }
-            else
-            {
+            else {
                 _clipboardIndicator.IsRunning = false;
                 _notifyIcon.Visible = false;
             }
             Hide();
         }
 
-        public void StartNotifyIcon()
-        {
+        public void StartNotifyIcon() {
             _notifyIcon = new NotifyIcon();
             _notifyIcon.Icon = new Icon(ClipboardIndicator.IconFile);
             ContextMenu notifyIconContextMenu = new ContextMenu();
@@ -45,22 +38,17 @@ namespace clipboard_indicator.Core.Ui
             _notifyIcon.Visible = true;
         }
 
-        public void ListenForCopy()
-        {
-            Thread thread = new Thread(() =>
-            {
+        public void ListenForCopy() {
+            Thread thread = new Thread(() => {
                 LastClipboardText = Clipboard.GetText();
-                while (_clipboardIndicator.IsRunning)
-                {
+                while (_clipboardIndicator.IsRunning) {
                     Thread.Sleep(50);
                     string clipboardText = Clipboard.GetText();
-                    if (clipboardText.Length != 0 && !clipboardText.Equals(LastClipboardText))
-                    {
+                    if (clipboardText.Length != 0 && !clipboardText.Equals(LastClipboardText)) {
                         LastClipboardText = clipboardText;
                         _clipboardIndicator.AddToHistory(LastClipboardText);
                         _clipboardIndicator.SaveHistory();
-                        if (_clipboardIndicator.Notify)
-                        {
+                        if (_clipboardIndicator.Notify) {
                             _notifyIcon.ShowBalloonTip(_clipboardIndicator.NotifyDuration, "Clipboard Indicator", "Clipboard saved.", ToolTipIcon.Info);
                         }
                     }
@@ -71,8 +59,7 @@ namespace clipboard_indicator.Core.Ui
             thread.Start();
         }
 
-        private void LaunchHistory(object sender, EventArgs arguments)
-        {
+        private void LaunchHistory(object sender, EventArgs arguments) {
             HistoryForm historyForm = new HistoryForm(_clipboardIndicator, this);
             historyForm.Name = "Clipboard Indicator";
             historyForm.Icon = new Icon(ClipboardIndicator.IconFile);
@@ -84,8 +71,7 @@ namespace clipboard_indicator.Core.Ui
             historyForm.Show();
         }
 
-        private void LaunchSettings(object sender, EventArgs arguments)
-        {
+        private void LaunchSettings(object sender, EventArgs arguments) {
             SettingsForm settingsForm = new SettingsForm(_clipboardIndicator);
             settingsForm.Name = "Clipboard Indicator";
             settingsForm.Icon = new Icon(ClipboardIndicator.IconFile);
@@ -98,8 +84,7 @@ namespace clipboard_indicator.Core.Ui
             settingsForm.Show();
         }
 
-        private void LaunchExit(object sender, EventArgs arguments)
-        {
+        private void LaunchExit(object sender, EventArgs arguments) {
             _clipboardIndicator.IsRunning = false;
             _notifyIcon.Visible = false;
             Hide();
