@@ -2,10 +2,10 @@
 using System.Runtime.InteropServices;
 using System.Windows;
 
-[assembly: AssemblyTitle("Clipboard Indicator")]
+[assembly: AssemblyTitle("clipdicator")]
 [assembly: AssemblyDescription("Clipboard indicator for Windows users")]
-[assembly: AssemblyProduct("Clipboard Indicator")]
-[assembly: AssemblyCopyright("Copyright © 2018 Jakub Zagórski (jaqobb)")]
+[assembly: AssemblyProduct("clipdicator")]
+[assembly: AssemblyCopyright("Copyright © Jakub Zagórski (jaqobb)")]
 [assembly: ComVisible(false)]
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
 [assembly: AssemblyVersion("1.0.0")]

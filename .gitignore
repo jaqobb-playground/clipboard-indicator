@@ -1,6 +1,6 @@
-.idea/
-*/bin/Debug/
-*/obj/Debug/
-*/bin/Release/
-*/obj/Release/
-*.user
+/.idea/
+/*/bin/Debug/
+/*/obj/Debug/
+/*/bin/Release/
+/*/obj/Release/
+/*.user
