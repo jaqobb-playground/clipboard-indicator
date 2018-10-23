@@ -54,7 +54,7 @@ namespace clipdicator.Core.Ui {
     }
 
     private void HandleNotify(object sender, MouseEventArgs arguments) {
-      if (arguments.Button == MouseButtons.Left) {
+      if(arguments.Button == MouseButtons.Left) {
         _clipdicator.Notify = !_clipdicator.Notify;
         _clipdicator.SaveConfiguration();
         _notifyBox.Checked = _clipdicator.Notify;

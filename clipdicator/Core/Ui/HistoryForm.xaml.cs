@@ -15,7 +15,7 @@ namespace clipdicator.Core.Ui {
       _historyBox.Text = "Notify on clipboard save";
       _historyBox.Location = new Point(0, 0);
       _historyBox.Size = new Size(285, 190);
-      foreach (string line in _clipdicator.History) {
+      foreach(string line in _clipdicator.History) {
         _historyBox.Items.Add(line);
       }
       _historyBox.MouseDoubleClick += HandleHistory;
@@ -24,11 +24,11 @@ namespace clipdicator.Core.Ui {
     }
 
     private void HandleHistory(object sender, MouseEventArgs arguments) {
-      if (arguments.Button != MouseButtons.Left) {
+      if(arguments.Button != MouseButtons.Left) {
         return;
       }
       int index = _historyBox.IndexFromPoint(arguments.Location);
-      if (index != ListBox.NoMatches) {
+      if(index != ListBox.NoMatches) {
         string line = _clipdicator.History[index];
         _mainForm.LastClipboardText = line;
         Clipboard.SetText(line);
