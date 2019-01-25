@@ -2,14 +2,19 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace clipdicator.Core.Ui {
-	public partial class SettingsForm {
+namespace clipdicator.Core.Ui
+{
+	public partial class SettingsForm
+	{
 		private readonly Clipdicator _clipdicator;
 		private readonly NumericUpDown _historySizeBox;
 		private readonly CheckBox _notifyBox;
+		private readonly Label _historySizeInfoBox;
 		private readonly NumericUpDown _notifyDurationBox;
+		private readonly Label _notifyDurationInfoBox;
 
-		public SettingsForm(Clipdicator clipdicator) {
+		public SettingsForm(Clipdicator clipdicator)
+		{
 			_clipdicator = clipdicator;
 			_historySizeBox = new NumericUpDown();
 			_historySizeBox.Minimum = 10;
@@ -18,10 +23,10 @@ namespace clipdicator.Core.Ui {
 			_historySizeBox.Location = new Point(15, 5);
 			_historySizeBox.Size = new Size(45, 25);
 			_historySizeBox.ValueChanged += HandleHistorySize;
-			Label historySizeInfoBox = new Label();
-			historySizeInfoBox.Text = "History size";
-			historySizeInfoBox.Location = new Point(62, 8);
-			historySizeInfoBox.AutoSize = true;
+			_historySizeInfoBox = new Label();
+			_historySizeInfoBox.Text = "History size";
+			_historySizeInfoBox.Location = new Point(62, 8);
+			_historySizeInfoBox.AutoSize = true;
 			_notifyBox = new CheckBox();
 			_notifyBox.Text = "Notify on clipboard save";
 			_notifyBox.Location = new Point(15, 29);
@@ -36,25 +41,28 @@ namespace clipdicator.Core.Ui {
 			_notifyDurationBox.Size = new Size(60, 25);
 			_notifyDurationBox.Enabled = _clipdicator.Notify;
 			_notifyDurationBox.ValueChanged += HandleNotifyDuration;
-			Label notifyDurationInfoBox = new Label();
-			notifyDurationInfoBox.Text = "Notify duration";
-			notifyDurationInfoBox.Location = new Point(90, 58);
-			notifyDurationInfoBox.AutoSize = true;
+			_notifyDurationInfoBox = new Label();
+			_notifyDurationInfoBox.Text = "Notify duration";
+			_notifyDurationInfoBox.Location = new Point(90, 58);
+			_notifyDurationInfoBox.AutoSize = true;
 			Controls.Add(_historySizeBox);
-			Controls.Add(historySizeInfoBox);
+			Controls.Add(_historySizeInfoBox);
 			Controls.Add(_notifyBox);
 			Controls.Add(_notifyDurationBox);
-			Controls.Add(notifyDurationInfoBox);
+			Controls.Add(_notifyDurationInfoBox);
 			InitializeComponent();
 		}
 
-		private void HandleHistorySize(object sender, EventArgs arguments) {
+		private void HandleHistorySize(object sender, EventArgs arguments)
+		{
 			_clipdicator.HistorySize = (int) _historySizeBox.Value;
 			_clipdicator.SaveConfiguration();
 		}
 
-		private void HandleNotify(object sender, MouseEventArgs arguments) {
-			if (arguments.Button == MouseButtons.Left) {
+		private void HandleNotify(object sender, MouseEventArgs arguments)
+		{
+			if (arguments.Button == MouseButtons.Left)
+			{
 				_clipdicator.Notify = !_clipdicator.Notify;
 				_clipdicator.SaveConfiguration();
 				_notifyBox.Checked = _clipdicator.Notify;
@@ -62,7 +70,8 @@ namespace clipdicator.Core.Ui {
 			}
 		}
 
-		private void HandleNotifyDuration(object sender, EventArgs arguments) {
+		private void HandleNotifyDuration(object sender, EventArgs arguments)
+		{
 			_clipdicator.NotifyDuration = (int) _notifyDurationBox.Value;
 			_clipdicator.SaveConfiguration();
 		}

@@ -4,29 +4,37 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace clipdicator.Core.Ui {
-	public partial class MainForm {
+namespace clipdicator.Core.Ui
+{
+	public partial class MainForm
+	{
 		private readonly Clipdicator _clipdicator;
 		private NotifyIcon _notifyIcon;
 		public string LastClipboardText = "";
 
-		public MainForm(Clipdicator clipdicator) {
+		public MainForm(Clipdicator clipdicator)
+		{
 			_clipdicator = clipdicator;
 			InitializeComponent();
 		}
 
-		protected override void OnFormClosing(FormClosingEventArgs arguments) {
+		protected override void OnFormClosing(FormClosingEventArgs arguments)
+		{
 			base.OnFormClosing(arguments);
-			if (arguments.CloseReason == CloseReason.UserClosing) {
+			if (arguments.CloseReason == CloseReason.UserClosing)
+			{
 				arguments.Cancel = true;
-			} else {
+			}
+			else
+			{
 				_clipdicator.IsRunning = false;
 				_notifyIcon.Visible = false;
 			}
 			Hide();
 		}
 
-		public void StartNotifyIcon() {
+		public void StartNotifyIcon()
+		{
 			_notifyIcon = new NotifyIcon();
 			_notifyIcon.Icon = new Icon(Clipdicator.IconFile);
 			ContextMenu notifyIconContextMenu = new ContextMenu();
@@ -37,17 +45,22 @@ namespace clipdicator.Core.Ui {
 			_notifyIcon.Visible = true;
 		}
 
-		public void ListenForCopy() {
-			Thread thread = new Thread(() => {
+		public void ListenForCopy()
+		{
+			Thread thread = new Thread(() =>
+			{
 				LastClipboardText = Clipboard.GetText();
-				while (_clipdicator.IsRunning) {
+				while (_clipdicator.IsRunning)
+				{
 					Thread.Sleep(50);
 					string clipboardText = Clipboard.GetText();
-					if (clipboardText.Length != 0 && !clipboardText.Equals(LastClipboardText)) {
+					if (clipboardText.Length != 0 && !clipboardText.Equals(LastClipboardText))
+					{
 						LastClipboardText = clipboardText;
 						_clipdicator.AddToHistory(LastClipboardText);
 						_clipdicator.SaveHistory();
-						if (_clipdicator.Notify) {
+						if (_clipdicator.Notify)
+						{
 							_notifyIcon.ShowBalloonTip(_clipdicator.NotifyDuration, "clipdicator", "Clipboard saved.", ToolTipIcon.Info);
 						}
 					}
@@ -58,7 +71,8 @@ namespace clipdicator.Core.Ui {
 			thread.Start();
 		}
 
-		private void LaunchHistory(object sender, EventArgs arguments) {
+		private void LaunchHistory(object sender, EventArgs arguments)
+		{
 			HistoryForm historyForm = new HistoryForm(_clipdicator, this);
 			historyForm.Name = "clipdicator";
 			historyForm.Icon = new Icon(Clipdicator.IconFile);
@@ -70,7 +84,8 @@ namespace clipdicator.Core.Ui {
 			historyForm.Show();
 		}
 
-		private void LaunchSettings(object sender, EventArgs arguments) {
+		private void LaunchSettings(object sender, EventArgs arguments)
+		{
 			SettingsForm settingsForm = new SettingsForm(_clipdicator);
 			settingsForm.Name = "clipdicator";
 			settingsForm.Icon = new Icon(Clipdicator.IconFile);
@@ -83,7 +98,8 @@ namespace clipdicator.Core.Ui {
 			settingsForm.Show();
 		}
 
-		private void LaunchExit(object sender, EventArgs arguments) {
+		private void LaunchExit(object sender, EventArgs arguments)
+		{
 			_clipdicator.IsRunning = false;
 			_notifyIcon.Visible = false;
 			Hide();
