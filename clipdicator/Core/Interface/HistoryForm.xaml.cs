@@ -2,7 +2,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Clipboard = System.Windows.Clipboard;
 
-namespace clipdicator.Core.Ui
+namespace clipdicator.Core.Interface
 {
 	public partial class HistoryForm
 	{

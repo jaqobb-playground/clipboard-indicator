@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using clipdicator.Core.Ui;
+using clipdicator.Core.Interface;
 
 namespace clipdicator.Core
 {

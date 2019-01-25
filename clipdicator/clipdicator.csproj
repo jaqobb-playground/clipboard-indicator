@@ -55,14 +55,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Clipdicator.cs" />
-    <Compile Include="Core\Ui\MainForm.xaml.cs">
-      <SubType>Code</SubType>
+    <Compile Include="Core\Interface\MainForm.xaml.cs">
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\Ui\HistoryForm.xaml.cs">
+    <Compile Include="Core\Interface\HistoryForm.xaml.cs">
       <DependentUpon>HistoryForm.xaml</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Core\Ui\SettingsForm.xaml.cs">
+    <Compile Include="Core\Interface\SettingsForm.xaml.cs">
       <DependentUpon>SettingsForm.xaml</DependentUpon>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -78,12 +80,12 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Core\Ui\MainForm.xaml">
+    <Page Include="Core\Interface\MainForm.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Core\Ui\HistoryForm.xaml" />
-    <Page Include="Core\Ui\SettingsForm.xaml" />
+    <Page Include="Core\Interface\HistoryForm.xaml" />
+    <Page Include="Core\Interface\SettingsForm.xaml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

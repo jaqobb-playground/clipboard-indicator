@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace clipdicator.Core.Ui
+namespace clipdicator.Core.Interface
 {
 	public partial class MainForm
 	{

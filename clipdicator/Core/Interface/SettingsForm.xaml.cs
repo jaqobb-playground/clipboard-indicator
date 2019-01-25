@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace clipdicator.Core.Ui
+namespace clipdicator.Core.Interface
 {
 	public partial class SettingsForm
 	{
