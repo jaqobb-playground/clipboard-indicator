@@ -1,4 +1,4 @@
-// MIT License
+// This file is a part of clipdicator, licensed under the MIT License.
 //
 // Copyright (c) Jakub Zagórski (jaqobb)
 //
