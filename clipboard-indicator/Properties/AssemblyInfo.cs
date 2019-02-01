@@ -24,9 +24,9 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 
-[assembly: AssemblyTitle("clipboard-indicator")]
+[assembly: AssemblyTitle("Clipboard Indicator")]
 [assembly: AssemblyDescription("Clipboard indicator for Windows users")]
-[assembly: AssemblyProduct("clipboard-indicator")]
+[assembly: AssemblyProduct("Clipboard Indicator")]
 [assembly: AssemblyCopyright("Copyright © Jakub Zagórski (jaqobb)")]
 [assembly: ComVisible(false)]
 [assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]

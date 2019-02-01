@@ -24,18 +24,18 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace clipboard_indicator.Core.Interface
+namespace ClipboardIndicator.Core.Interface
 {
 	public partial class SettingsForm
 	{
-		private readonly ClipboardIndicator _clipboardIndicator;
+		private readonly ClipboardIndicatorMain _clipboardIndicator;
 		private readonly NumericUpDown _historySizeBox;
 		private readonly CheckBox _notifyBox;
 		private readonly Label _historySizeInfoBox;
 		private readonly NumericUpDown _notifyDurationBox;
 		private readonly Label _notifyDurationInfoBox;
 
-		public SettingsForm(ClipboardIndicator clipboardIndicator)
+		public SettingsForm(ClipboardIndicatorMain clipboardIndicator)
 		{
 			_clipboardIndicator = clipboardIndicator;
 			_historySizeBox = new NumericUpDown();

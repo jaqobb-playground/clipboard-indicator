@@ -21,19 +21,18 @@
 // SOFTWARE.
 
 using System.Windows;
-using clipboard_indicator.Core;
 
-namespace clipboard_indicator.Bootstrap
+namespace ClipboardIndicator.Core
 {
-	public partial class Bootstrap
+	public partial class ClipboardIndicatorBootstrap
 	{
-		private Bootstrap()
+		private ClipboardIndicatorBootstrap()
 		{
 		}
 
 		private void Launch(object sender, StartupEventArgs arguments)
 		{
-			ClipboardIndicator clipboardIndicator = new ClipboardIndicator();
+			ClipboardIndicatorMain clipboardIndicator = new ClipboardIndicatorMain();
 			clipboardIndicator.Start();
 		}
 	}

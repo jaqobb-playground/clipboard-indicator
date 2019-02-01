@@ -1,4 +1,4 @@
-// This file is a part of clipboard-indicator, licensed under the MIT License.
+﻿// This file is a part of clipboard-indicator, licensed under the MIT License.
 //
 // Copyright (c) Jakub Zagórski (jaqobb)
 //
@@ -24,11 +24,11 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using clipboard_indicator.Core.Interface;
+using ClipboardIndicator.Core.Interface;
 
-namespace clipboard_indicator.Core
+namespace ClipboardIndicator.Core
 {
-	public partial class ClipboardIndicator
+	public partial class ClipboardIndicatorMain
 	{
 		public static readonly string ApplicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Clipboard Indicator");
 		public static readonly string ConfigurationFile = Path.Combine(ApplicationFolder, "configuration.properties");

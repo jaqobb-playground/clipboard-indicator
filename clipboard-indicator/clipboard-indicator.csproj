@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7CEE7762-8056-4574-9B2D-7B53C4358A30}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>clipboard_indicator</RootNamespace>
+    <RootNamespace>ClipboardIndicator</RootNamespace>
     <AssemblyName>clipboard-indicator</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -48,13 +48,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bootstrap\Bootstrap.xaml.cs">
-      <DependentUpon>Bootstrap.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Core\ClipboardIndicator.cs" />
+    <Compile Include="Core\ClipboardIndicatorBootstrap.xaml.cs" />
+    <Compile Include="Core\ClipboardIndicatorMain.cs" />
     <Compile Include="Core\Interface\MainForm.xaml.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,8 +66,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="Bootstrap\Bootstrap.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <ApplicationDefinition Include="Core\ClipboardIndicatorBootstrap.xaml">
       <SubType>Designer</SubType>
     </ApplicationDefinition>
   </ItemGroup>
@@ -83,5 +77,6 @@
     <Page Include="Core\Interface\HistoryForm.xaml" />
     <Page Include="Core\Interface\SettingsForm.xaml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
