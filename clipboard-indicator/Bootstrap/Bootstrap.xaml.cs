@@ -1,4 +1,4 @@
-﻿// This file is a part of clipdicator, licensed under the MIT License.
+﻿// This file is a part of clipboard-indicator, licensed under the MIT License.
 //
 // Copyright (c) Jakub Zagórski (jaqobb)
 //
@@ -20,15 +20,21 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-using System.Reflection;
-using System.Runtime.InteropServices;
 using System.Windows;
+using clipboard_indicator.Core;
 
-[assembly: AssemblyTitle("clipdicator")]
-[assembly: AssemblyDescription("Clipboard indicator for Windows users")]
-[assembly: AssemblyProduct("clipdicator")]
-[assembly: AssemblyCopyright("Copyright © Jakub Zagórski (jaqobb)")]
-[assembly: ComVisible(false)]
-[assembly: ThemeInfo(ResourceDictionaryLocation.None, ResourceDictionaryLocation.SourceAssembly)]
-[assembly: AssemblyVersion("1.0.0")]
-[assembly: AssemblyFileVersion("1.0.0")]
+namespace clipboard_indicator.Bootstrap
+{
+	public partial class Bootstrap
+	{
+		private Bootstrap()
+		{
+		}
+
+		private void Launch(object sender, StartupEventArgs arguments)
+		{
+			ClipboardIndicator clipboardIndicator = new ClipboardIndicator();
+			clipboardIndicator.Start();
+		}
+	}
+}

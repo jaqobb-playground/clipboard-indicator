@@ -1,4 +1,4 @@
-// This file is a part of clipdicator, licensed under the MIT License.
+// This file is a part of clipboard-indicator, licensed under the MIT License.
 //
 // Copyright (c) Jakub Zagórski (jaqobb)
 //
@@ -24,23 +24,23 @@ using System.Drawing;
 using System.Windows.Forms;
 using Clipboard = System.Windows.Clipboard;
 
-namespace clipdicator.Core.Interface
+namespace clipboard_indicator.Core.Interface
 {
 	public partial class HistoryForm
 	{
-		private readonly Clipdicator _clipdicator;
+		private readonly ClipboardIndicator _clipboardIndicator;
 		private readonly MainForm _mainForm;
 		private readonly ListBox _historyBox;
 
-		public HistoryForm(Clipdicator clipdicator, MainForm mainForm)
+		public HistoryForm(ClipboardIndicator clipboardIndicator, MainForm mainForm)
 		{
-			_clipdicator = clipdicator;
+			_clipboardIndicator = clipboardIndicator;
 			_mainForm = mainForm;
 			_historyBox = new ListBox();
 			_historyBox.Text = "Notify on clipboard save";
 			_historyBox.Location = new Point(0, 0);
 			_historyBox.Size = new Size(285, 190);
-			foreach (string line in _clipdicator.History)
+			foreach (string line in _clipboardIndicator.History)
 			{
 				_historyBox.Items.Add(line);
 			}
@@ -58,7 +58,7 @@ namespace clipdicator.Core.Interface
 			int index = _historyBox.IndexFromPoint(arguments.Location);
 			if (index != ListBox.NoMatches)
 			{
-				string line = _clipdicator.History[index];
+				string line = _clipboardIndicator.History[index];
 				_mainForm.LastClipboardText = line;
 				Clipboard.SetText(line);
 				Hide();

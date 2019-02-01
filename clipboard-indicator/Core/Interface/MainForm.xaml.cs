@@ -1,4 +1,4 @@
-﻿// This file is a part of clipdicator, licensed under the MIT License.
+﻿// This file is a part of clipboard-indicator, licensed under the MIT License.
 //
 // Copyright (c) Jakub Zagórski (jaqobb)
 //
@@ -26,17 +26,17 @@ using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace clipdicator.Core.Interface
+namespace clipboard_indicator.Core.Interface
 {
 	public partial class MainForm
 	{
-		private readonly Clipdicator _clipdicator;
+		private readonly ClipboardIndicator _clipboardIndicator;
 		private NotifyIcon _notifyIcon;
 		public string LastClipboardText = "";
 
-		public MainForm(Clipdicator clipdicator)
+		public MainForm(ClipboardIndicator clipboardIndicator)
 		{
-			_clipdicator = clipdicator;
+			_clipboardIndicator = clipboardIndicator;
 			InitializeComponent();
 		}
 
@@ -49,7 +49,7 @@ namespace clipdicator.Core.Interface
 			}
 			else
 			{
-				_clipdicator.IsRunning = false;
+				_clipboardIndicator.IsRunning = false;
 				_notifyIcon.Visible = false;
 			}
 			Hide();
@@ -58,7 +58,7 @@ namespace clipdicator.Core.Interface
 		public void StartNotifyIcon()
 		{
 			_notifyIcon = new NotifyIcon();
-			_notifyIcon.Icon = new Icon(Clipdicator.IconFile);
+			_notifyIcon.Icon = new Icon(ClipboardIndicator.IconFile);
 			ContextMenu notifyIconContextMenu = new ContextMenu();
 			notifyIconContextMenu.MenuItems.Add("History", LaunchHistory);
 			notifyIconContextMenu.MenuItems.Add("Settings", LaunchSettings);
@@ -72,18 +72,18 @@ namespace clipdicator.Core.Interface
 			Thread thread = new Thread(() =>
 			{
 				LastClipboardText = Clipboard.GetText();
-				while (_clipdicator.IsRunning)
+				while (_clipboardIndicator.IsRunning)
 				{
 					Thread.Sleep(50);
 					string clipboardText = Clipboard.GetText();
 					if (clipboardText.Length != 0 && !clipboardText.Equals(LastClipboardText))
 					{
 						LastClipboardText = clipboardText;
-						_clipdicator.AddToHistory(LastClipboardText);
-						_clipdicator.SaveHistory();
-						if (_clipdicator.Notify)
+						_clipboardIndicator.AddToHistory(LastClipboardText);
+						_clipboardIndicator.SaveHistory();
+						if (_clipboardIndicator.Notify)
 						{
-							_notifyIcon.ShowBalloonTip(_clipdicator.NotifyDuration, "clipdicator", "Clipboard saved.", ToolTipIcon.Info);
+							_notifyIcon.ShowBalloonTip(_clipboardIndicator.NotifyDuration, "Clipboard Indicator", "Clipboard saved.", ToolTipIcon.Info);
 						}
 					}
 				}
@@ -95,10 +95,10 @@ namespace clipdicator.Core.Interface
 
 		private void LaunchHistory(object sender, EventArgs arguments)
 		{
-			HistoryForm historyForm = new HistoryForm(_clipdicator, this);
-			historyForm.Name = "clipdicator";
-			historyForm.Icon = new Icon(Clipdicator.IconFile);
-			historyForm.Text = "clipdicator";
+			HistoryForm historyForm = new HistoryForm(_clipboardIndicator, this);
+			historyForm.Name = "Clipboard Indicator";
+			historyForm.Icon = new Icon(ClipboardIndicator.IconFile);
+			historyForm.Text = "Clipboard Indicator";
 			historyForm.Size = new Size(300, 225);
 			historyForm.MinimizeBox = false;
 			historyForm.MaximizeBox = false;
@@ -108,10 +108,10 @@ namespace clipdicator.Core.Interface
 
 		private void LaunchSettings(object sender, EventArgs arguments)
 		{
-			SettingsForm settingsForm = new SettingsForm(_clipdicator);
-			settingsForm.Name = "clipdicator";
-			settingsForm.Icon = new Icon(Clipdicator.IconFile);
-			settingsForm.Text = "clipdicator";
+			SettingsForm settingsForm = new SettingsForm(_clipboardIndicator);
+			settingsForm.Name = "Clipboard Indicator";
+			settingsForm.Icon = new Icon(ClipboardIndicator.IconFile);
+			settingsForm.Text = "Clipboard Indicator";
 			settingsForm.Size = new Size(200, 125);
 			settingsForm.MinimizeBox = false;
 			settingsForm.MaximizeBox = false;
@@ -122,7 +122,7 @@ namespace clipdicator.Core.Interface
 
 		private void LaunchExit(object sender, EventArgs arguments)
 		{
-			_clipdicator.IsRunning = false;
+			_clipboardIndicator.IsRunning = false;
 			_notifyIcon.Visible = false;
 			Hide();
 			Process.GetCurrentProcess().Kill();

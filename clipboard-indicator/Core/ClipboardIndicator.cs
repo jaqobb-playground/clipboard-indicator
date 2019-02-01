@@ -1,4 +1,4 @@
-// This file is a part of clipdicator, licensed under the MIT License.
+// This file is a part of clipboard-indicator, licensed under the MIT License.
 //
 // Copyright (c) Jakub Zagórski (jaqobb)
 //
@@ -24,13 +24,13 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using clipdicator.Core.Interface;
+using clipboard_indicator.Core.Interface;
 
-namespace clipdicator.Core
+namespace clipboard_indicator.Core
 {
-	public class Clipdicator
+	public partial class ClipboardIndicator
 	{
-		public static readonly string ApplicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "clipdicator");
+		public static readonly string ApplicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Clipboard Indicator");
 		public static readonly string ConfigurationFile = Path.Combine(ApplicationFolder, "configuration.properties");
 		public static readonly string HistoryFile = Path.Combine(ApplicationFolder, "history.log");
 		public static readonly string IconFile = Path.Combine(ApplicationFolder, "icon.ico");
@@ -128,7 +128,7 @@ namespace clipdicator.Core
 			}
 			IsRunning = true;
 			MainForm form = new MainForm(this);
-			form.Name = "clipdicator";
+			form.Name = "Clipboard Indicator";
 			form.Size = new Size(0, 0);
 			form.StartNotifyIcon();
 			form.ListenForCopy();

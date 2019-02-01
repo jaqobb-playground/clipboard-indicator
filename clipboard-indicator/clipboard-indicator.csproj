@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7CEE7762-8056-4574-9B2D-7B53C4358A30}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>clipdicator</RootNamespace>
-    <AssemblyName>clipdicator</AssemblyName>
+    <RootNamespace>clipboard_indicator</RootNamespace>
+    <AssemblyName>clipboard-indicator</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -54,7 +54,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Clipdicator.cs" />
+    <Compile Include="Core\ClipboardIndicator.cs" />
     <Compile Include="Core\Interface\MainForm.xaml.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,9 +71,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Bootstrap\Bootstrap.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ApplicationDefinition Include="Bootstrap\Bootstrap.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,7 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Core\Interface\MainForm.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Core\Interface\HistoryForm.xaml" />

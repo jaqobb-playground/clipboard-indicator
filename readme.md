@@ -1,1 +1,1 @@
-## clipdicator
+## clipboard-indicator
