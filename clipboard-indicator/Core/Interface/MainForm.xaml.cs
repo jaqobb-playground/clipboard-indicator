@@ -30,11 +30,11 @@ namespace ClipboardIndicator.Core.Interface
 {
 	public partial class MainForm
 	{
-		private readonly ClipboardIndicatorMain _clipboardIndicator;
+		private readonly ClipboardIndicator _clipboardIndicator;
 		private NotifyIcon _notifyIcon;
 		public string LastClipboardText = "";
 
-		public MainForm(ClipboardIndicatorMain clipboardIndicator)
+		public MainForm(ClipboardIndicator clipboardIndicator)
 		{
 			_clipboardIndicator = clipboardIndicator;
 			InitializeComponent();
@@ -58,7 +58,7 @@ namespace ClipboardIndicator.Core.Interface
 		public void StartNotifyIcon()
 		{
 			_notifyIcon = new NotifyIcon();
-			_notifyIcon.Icon = new Icon(ClipboardIndicatorMain.IconFile);
+			_notifyIcon.Icon = new Icon(ClipboardIndicator.IconFile);
 			ContextMenu notifyIconContextMenu = new ContextMenu();
 			notifyIconContextMenu.MenuItems.Add("History", LaunchHistory);
 			notifyIconContextMenu.MenuItems.Add("Settings", LaunchSettings);
@@ -97,7 +97,7 @@ namespace ClipboardIndicator.Core.Interface
 		{
 			HistoryForm historyForm = new HistoryForm(_clipboardIndicator, this);
 			historyForm.Name = "Clipboard Indicator";
-			historyForm.Icon = new Icon(ClipboardIndicatorMain.IconFile);
+			historyForm.Icon = new Icon(ClipboardIndicator.IconFile);
 			historyForm.Text = "Clipboard Indicator";
 			historyForm.Size = new Size(300, 225);
 			historyForm.MinimizeBox = false;
@@ -110,7 +110,7 @@ namespace ClipboardIndicator.Core.Interface
 		{
 			SettingsForm settingsForm = new SettingsForm(_clipboardIndicator);
 			settingsForm.Name = "Clipboard Indicator";
-			settingsForm.Icon = new Icon(ClipboardIndicatorMain.IconFile);
+			settingsForm.Icon = new Icon(ClipboardIndicator.IconFile);
 			settingsForm.Text = "Clipboard Indicator";
 			settingsForm.Size = new Size(200, 125);
 			settingsForm.MinimizeBox = false;

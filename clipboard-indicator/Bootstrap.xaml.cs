@@ -22,17 +22,17 @@
 
 using System.Windows;
 
-namespace ClipboardIndicator.Core
+namespace ClipboardIndicator
 {
-	public partial class ClipboardIndicatorBootstrap
+	public partial class Bootstrap
 	{
-		private ClipboardIndicatorBootstrap()
+		private Bootstrap()
 		{
 		}
 
 		private void Launch(object sender, StartupEventArgs arguments)
 		{
-			ClipboardIndicatorMain clipboardIndicator = new ClipboardIndicatorMain();
+			Core.ClipboardIndicator clipboardIndicator = new Core.ClipboardIndicator();
 			clipboardIndicator.Start();
 		}
 	}

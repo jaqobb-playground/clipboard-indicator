@@ -28,11 +28,11 @@ namespace ClipboardIndicator.Core.Interface
 {
 	public partial class HistoryForm
 	{
-		private readonly ClipboardIndicatorMain _clipboardIndicator;
+		private readonly ClipboardIndicator _clipboardIndicator;
 		private readonly MainForm _mainForm;
 		private readonly ListBox _historyBox;
 
-		public HistoryForm(ClipboardIndicatorMain clipboardIndicator, MainForm mainForm)
+		public HistoryForm(ClipboardIndicator clipboardIndicator, MainForm mainForm)
 		{
 			_clipboardIndicator = clipboardIndicator;
 			_mainForm = mainForm;

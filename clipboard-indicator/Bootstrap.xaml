@@ -1,4 +1,4 @@
-﻿<Application x:Class="ClipboardIndicator.Core.ClipboardIndicatorBootstrap"
+﻿<Application x:Class="ClipboardIndicator.Bootstrap"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Startup="Launch">
