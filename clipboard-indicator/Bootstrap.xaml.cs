@@ -30,7 +30,7 @@ namespace ClipboardIndicator
 		{
 		}
 
-		private void Launch(object sender, StartupEventArgs arguments)
+		public void Launch(object sender, StartupEventArgs arguments)
 		{
 			Core.ClipboardIndicator clipboardIndicator = new Core.ClipboardIndicator();
 			clipboardIndicator.Start();
