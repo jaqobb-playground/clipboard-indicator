@@ -24,16 +24,16 @@ using System.Windows;
 
 namespace ClipboardIndicator
 {
-	public partial class Bootstrap
-	{
-		private Bootstrap()
-		{
-		}
+  public partial class Bootstrap
+  {
+    private Bootstrap()
+    {
+    }
 
-		public void Launch(object sender, StartupEventArgs arguments)
-		{
-			Core.ClipboardIndicator clipboardIndicator = new Core.ClipboardIndicator();
-			clipboardIndicator.Start();
-		}
-	}
+    public void Launch(object sender, StartupEventArgs arguments)
+    {
+      Core.ClipboardIndicator clipboardIndicator = new Core.ClipboardIndicator();
+      clipboardIndicator.Start();
+    }
+  }
 }
