@@ -1,4 +1,4 @@
-// This file is a part of clipboard-indicator, licensed under the MIT License.
+// MIT License
 //
 // Copyright (c) Jakub Zagórski (jaqobb)
 //
@@ -26,43 +26,43 @@ using Clipboard = System.Windows.Clipboard;
 
 namespace ClipboardIndicator.Core.Interface
 {
-  public partial class HistoryForm
-  {
-    private readonly ClipboardIndicator _clipboardIndicator;
-    private readonly MainForm _mainForm;
-    private readonly ListBox _historyBox;
+	public partial class HistoryForm
+	{
+		private ClipboardIndicator _clipboardIndicator;
+		private MainForm _mainForm;
+		private ListBox _historyBox;
 
-    public HistoryForm(ClipboardIndicator clipboardIndicator, MainForm mainForm)
-    {
-      _clipboardIndicator = clipboardIndicator;
-      _mainForm = mainForm;
-      _historyBox = new ListBox();
-      _historyBox.Text = "Notify on clipboard save";
-      _historyBox.Location = new Point(0, 0);
-      _historyBox.Size = new Size(285, 190);
-      foreach(string line in _clipboardIndicator.History)
-      {
-        _historyBox.Items.Add(line);
-      }
-      _historyBox.MouseDoubleClick += HandleHistory;
-      Controls.Add(_historyBox);
-      InitializeComponent();
-    }
+		public HistoryForm(ClipboardIndicator clipboardIndicator, MainForm mainForm)
+		{
+			_clipboardIndicator = clipboardIndicator;
+			_mainForm = mainForm;
+			_historyBox = new ListBox();
+			_historyBox.Text = "Notify on clipboard save";
+			_historyBox.Location = new Point(0, 0);
+			_historyBox.Size = new Size(285, 190);
+			foreach (var line in _clipboardIndicator.History)
+			{
+				_historyBox.Items.Add(line);
+			}
+			_historyBox.MouseDoubleClick += HandleHistory;
+			Controls.Add(_historyBox);
+			InitializeComponent();
+		}
 
-    private void HandleHistory(object sender, MouseEventArgs arguments)
-    {
-      if(arguments.Button != MouseButtons.Left)
-      {
-        return;
-      }
-      int index = _historyBox.IndexFromPoint(arguments.Location);
-      if(index != ListBox.NoMatches)
-      {
-        string line = _clipboardIndicator.History[index];
-        _mainForm.LastClipboardText = line;
-        Clipboard.SetText(line);
-        Hide();
-      }
-    }
-  }
+		private void HandleHistory(object sender, MouseEventArgs arguments)
+		{
+			if (arguments.Button != MouseButtons.Left)
+			{
+				return;
+			}
+			var index = _historyBox.IndexFromPoint(arguments.Location);
+			if (index != ListBox.NoMatches)
+			{
+				var line = _clipboardIndicator.History[index];
+				_mainForm.LastClipboardText = line;
+				Clipboard.SetText(line);
+				Hide();
+			}
+		}
+	}
 }

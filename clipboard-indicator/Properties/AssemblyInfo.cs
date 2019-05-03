@@ -1,4 +1,4 @@
-﻿// This file is a part of clipboard-indicator, licensed under the MIT License.
+﻿// MIT License
 //
 // Copyright (c) Jakub Zagórski (jaqobb)
 //
