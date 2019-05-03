@@ -28,8 +28,10 @@ using ClipboardIndicator.Core.Interface;
 
 namespace ClipboardIndicator.Core
 {
+
 	public class ClipboardIndicator
 	{
+
 		public static readonly string ApplicationFolder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "Clipboard Indicator");
 		public static readonly string ConfigurationFile = Path.Combine(ApplicationFolder, "configuration.properties");
 		public static readonly string HistoryFile = Path.Combine(ApplicationFolder, "history.log");

@@ -26,8 +26,10 @@ using Clipboard = System.Windows.Clipboard;
 
 namespace ClipboardIndicator.Core.Interface
 {
+
 	public partial class HistoryForm
 	{
+
 		private ClipboardIndicator _clipboardIndicator;
 		private MainForm _mainForm;
 		private ListBox _historyBox;

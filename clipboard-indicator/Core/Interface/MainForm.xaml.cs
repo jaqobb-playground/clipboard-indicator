@@ -28,8 +28,10 @@ using System.Windows.Forms;
 
 namespace ClipboardIndicator.Core.Interface
 {
+
 	public partial class MainForm
 	{
+
 		private ClipboardIndicator _clipboardIndicator;
 		private NotifyIcon _notifyIcon;
 		public string LastClipboardText = "";

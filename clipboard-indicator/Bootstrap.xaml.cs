@@ -25,8 +25,10 @@ using System.Windows;
 
 namespace ClipboardIndicator
 {
+
 	public partial class Bootstrap
 	{
+
 		private Bootstrap() => throw new NotSupportedException("Cannot create instance of utility class");
 
 		public void Launch(object sender, StartupEventArgs arguments)

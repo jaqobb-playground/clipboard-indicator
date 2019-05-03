@@ -26,8 +26,10 @@ using System.Windows.Forms;
 
 namespace ClipboardIndicator.Core.Interface
 {
+
 	public partial class SettingsForm
 	{
+
 		private ClipboardIndicator _clipboardIndicator;
 		private NumericUpDown _historySizeBox;
 		private CheckBox _notifyBox;
