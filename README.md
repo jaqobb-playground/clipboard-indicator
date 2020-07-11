@@ -1,4 +1,6 @@
-ClipboardIndicator
+Clipboard Indicator
 =========
 
-A clipboard indicator program but for Windows' users.
+Clipboard indicator but for Windows' users
+
+Project is not likely to receive any more changes.
